@@ -1,24 +1,25 @@
 import { useState } from "react";
 import axios from "axios"
-import { useNavigate } from "react-router-dom";
+import { GoogleLogin  } from '@react-oauth/google'
+import { jwtDecode } from "jwt-decode";
 
 function Signup() {
   const openLink = () => {window.location.assign("./login")}
   const [ username, setUsername ] = useState(''); 
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
-  const history = useNavigate();
+  const [ googleLogin, setGoogleLogin] = useState(false);
 
   async function submit(e) {
-    e.preventDefault();
+    e?.preventDefault();
     try {
-      await axios.post("http://localhost:3000/signup",{
-        username, email, password
+      await axios.post("http://localhost:8000/signup",{
+        username, email, password, googleLogin
       }).then(res => {
-        if (res.data) {
-          history("/",{state:{id:email}})
-        } else {
-          alert("User doesn't exists")
+        alert(res.data)
+        if (res.data === "exist") {
+        } else if(res.data === "dontexist"){
+          
         }
       }).catch(e => {
         alert("wrong details")
@@ -26,7 +27,6 @@ function Signup() {
       })
     } catch (e) {
       console.log(e);
-      
     }
   }
 return (
@@ -39,11 +39,25 @@ return (
         <input type="email" onChange={(e) => {
           setEmail(e.target.value)
         }} placeholder='Email'></input>
-        <input type="password" onChange={(e) => {
+        <input type="password" minLength="8" onChange={(e) => {
           setPassword(e.target.value)
         }} placeholder='Password'></input>
         <input onClick={submit} type='submit'/>
       </form>
+      <GoogleLogin
+        onSuccess={credentialResponse => {
+          console.log(jwtDecode(credentialResponse.credential).email);
+          setUsername(jwtDecode(credentialResponse.credential).given_name)
+          setEmail(jwtDecode(credentialResponse.credential).email)
+          setPassword(".")
+          setGoogleLogin(true)
+          submit()
+        }}
+        onError={() => {
+          console.log('Login Failed');
+        }}
+        
+      />;   
       <button onClick={openLink}>login</button>
     </div>
   );
