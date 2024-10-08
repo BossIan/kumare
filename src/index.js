@@ -1,30 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import Dashboard from './components/dashboard';
 import LandingPage from './landingPage';
-import { GoogleOAuthProvider  } from '@react-oauth/google'
-import Login from './components/login';
 import reportWebVitals from './reportWebVitals';
-import Signup from "./components/signup"
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-const clientId = "581726821208-8oejsa0engec9m0ocliqqie9lasao2hq.apps.googleusercontent.com"
+import { initSatellite } from '@junobuild/core'
+
 const router = createBrowserRouter([{
     path: "/",
     element: <LandingPage />
-  },{
-    path: "/signup",
-    element: <Signup />
-  },{
-  path: "/login",
-  element: <Login />
-}]);
+  }, {
+    path: "/dashboard",
+    element: <Dashboard />
+  }
+]);
+(async () => await initSatellite({
+  satelliteId: "ryuyw-nyaaa-aaaal-amngq-cai",
+}))();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <GoogleOAuthProvider clientId={clientId}>
   <React.StrictMode>
     <RouterProvider router={router}/>
   </React.StrictMode>
-  </GoogleOAuthProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
