@@ -1,15 +1,9 @@
 import './dashboard.css';
 import { signOut } from '@junobuild/core';
-import { createContext } from "react";
-import { userContext } from '../landingPage';
+import { AuthContext } from './Auth';
+import { useContext, useEffect } from 'react';
 import Db from './db';
 function Dashboard() {
-    console.log(userContext);
-    
-    if (userContext == undefined && userContext == null) {
-        window.location.assign("./")
-    }
-
     function signOutBtn() {
         signOut().then(
             function () {
@@ -18,7 +12,6 @@ function Dashboard() {
         )
     }
     return (
-        
         <div className='dashboard'>
             <Db/>
             <div className="sideBar">

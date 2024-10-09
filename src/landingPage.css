@@ -1,7 +1,7 @@
 body{
     font-family: 'Manrope';
     overflow-x: hidden;
-
+    overflow-Y: scroll;
 }
 button {
     cursor: pointer;
@@ -153,7 +153,7 @@ header{
 }
 
 .thirdDiv {
-    margin-block: 6vw;
+    margin-block: 12vw;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -162,16 +162,42 @@ header{
 .image-content {
     position: relative;
     width: 50vw;
+    top: -15vw;
 }
 
-.image-placeholder {
-    width:35%;
-    height: 22vw;
-    background-color: #e6e6e6;
-    border-radius: 8px;
+.thirdDivCircle {
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    background-color: #FF992D;
     position: absolute;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+.thirdDivCircle:nth-child(1){
+    width: 25vw;
+    height: 25vw;
+    left: 15vw;
+    background: 0;
+    background-size: cover;
+}
+
+.thirdDivCircle:nth-child(2){
+    width: 12vw;
+    height: 12vw;
+    left: 3vw;
+    bottom: -35vw;
+}
+
+.thirdDivCircle:nth-child(3){
+    left: 3vw;
+}
+
+
+.thirdDivCircle:nth-child(4){
+    right: 4vw;
+    bottom: -35vw;
+}
+
 
 .image-placeholder:first-child {
     top: -12vw;
@@ -279,6 +305,7 @@ padding-bottom: 6vw;
     font-weight: 800;
     margin-block: 1.5vw;
     line-height: 4vw;
+    width: 80vw;
 }
 
 .fifthDiv h2{
@@ -293,28 +320,86 @@ padding-bottom: 6vw;
 }
 .circleDiv{
     position: relative;
-    top: -13vw;
+    top: -15vw;
 }
 
 .circleDiv img {
     position: absolute;
-    width: 40vw;
+    width: 35vw;
+    
 }
 
 .circleDiv img:nth-child(2) {
-    right: 4vw;
-    top: -5vw;
+    right: -10vw;
+    top: -20vw;
+    animation: spin linear;
+    animation-timeline: view();
+    animation-range-start: cover;
+    animation-range-end: cover;
+    animation-fill-mode: both;
 }
 
 .circleDiv img:nth-child(3) {
-    right: 20vw;
-    top: 27vw;
+    right: 10vw;
+    animation: spin2 linear;
+    top: 20vw;
+    animation-timeline: view();
+    animation-range-start: cover;
+    animation-fill-mode: both;
+    animation-range-end: cover;
 }
 
 .circleDiv img:nth-child(4) {
-    right: 1vw;
+    right: 0vw;
     top: 60vw;
+    animation: spin3 linear;
+    animation-timeline: view();
+    animation-fill-mode: both;
+    animation-range-start: cover;
+    animation-range-end: contain;
 }
+
+@keyframes spin {
+    to {
+        right: 5vw;
+        top: 5vw;
+    }
+
+  }
+
+  @keyframes spin2 {
+    10%{
+        top: 20vw;
+        right: 15vw;
+    }
+    50%{
+        top: 30vw;
+        right: 20vw;
+    }
+    100% {
+        right: 10vw;
+        top: 50vw;
+    }
+
+  }
+  @keyframes spin3 {
+    to {
+        right: -20vw     
+
+    }
+  }
+
+  @keyframes pop {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;     
+
+    }
+  }
+
+
 
 .circle {
     width: 90vw;
@@ -324,6 +409,7 @@ padding-bottom: 6vw;
     right: -45vw;
     overflow-x: hidden;
     background: linear-gradient(180deg, #EA871E 0%, #AC4F00 100%);
+    margin: 0;
 }
 
 
@@ -340,7 +426,12 @@ padding-bottom: 6vw;
     width: 40vw;
     display: flex;
     text-align: justify;
-    height: 10vw;
+    height: 10vw;   
+    animation: pop  2s ease-in;
+    animation-timeline: view();
+    animation-range-start: -100px;
+    animation-range-end: 350px;
+    opacity: 1;
 }
 
 .sdg:nth-child(2) .text{

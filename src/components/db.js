@@ -1,44 +1,70 @@
 import { setDoc, listDocs } from "@junobuild/core";
-import { useEffect, useState } from "react";
-
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "./Auth";
 import { nanoid } from "nanoid"; 
 function Db() {
+  const { user } = useContext(AuthContext);
   const [items, setItems] = useState([]);
-  function listItems() {
-    console.log(items);
+  useEffect(() => {
+    window.addEventListener("reload", list);
+
+    return () => {
+      window.removeEventListener("reload", list);
+    };
+  }, []);
+
+  const list = async () => {
+    // TODO: STEP_7_LIST_DOCS
+    try {
+      const { items } = await listDocs({
+        collection: "notes",
+      });
+  
+      setItems(items);
+      console.log(items);
+    } catch (error) {
+      console.log(error);
+      
+    }
     
-  }
+    
+};
+  
+  useEffect(() => {
+    if ([undefined, null].includes(user)) {
+      setItems([]);
+      return;
+    }
+
+    (async () => await list())();
+  }, [user]);
 
     const add = async () => {
-      const key = nanoid();
-      await setDoc({
-        collection: "users",
-        doc: {
-          key,
-          data: {
-            isNew: "false",
-        },
-      }
-      });
-      console.log('wea');
-    }
-      const list = async () => {
-        const { user } = await listDocs({
+      try {
+        const key = nanoid();
+        await setDoc({
           collection: "users",
+          doc: {
+            key,
+            data: {
+              isNew: "false",
+          },
+        }
         });
-        setItems(user);
-    };
-    useEffect(() => {
-      (async () => await list())();
-    })
+        console.log(key);
+        let event = new Event("reload");
+        window.dispatchEvent(event);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
     return(
       <div>
       <button onClick={add}>
         Submit
       </button>
-      <button onClick={listItems}>
-        List
-      </button>
+
       </div>
     );
 }

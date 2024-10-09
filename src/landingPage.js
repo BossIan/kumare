@@ -1,31 +1,42 @@
 import './landingPage.css';
-import { signIn, authSubscribe } from "@junobuild/core";
-import { useEffect, useState, createContext } from 'react';
-export var userContext;
+import SignInBtn from './components/signInBtn'
+import { useEffect, useRef, useState } from 'react';
 function LandingPage() {
-  function signInBtn() {
-    
-    if (user !== undefined && user !== null) {
-      userContext = user
-      window.location.assign("./dashboard")
-    } else {
-      signIn().then(function() {
-        window.location.assign("./")
-        userContext = user
-        console.log(user);
-        
-        window.location.assign("./dashboard")
-      });
-    }
-  }
-  const [user, setUser] = useState(undefined);
+  const circle1 = useRef(null);
+  const circle2 = useRef(null);
+  const circle3 = useRef(null);
 
+  const circleDiv = useRef(null);
   useEffect(() => {
-    const sub = authSubscribe((user) => {
-      setUser(user)
-    });
-    return() => sub();
+    
+    const onScroll = () => {
+      const container = circleDiv.current;
+      let scrollPosition = window.scrollY * 0.001; // Multiply to control orbit speed
+
+      const radius = container.offsetWidth / 2 - (20 * window.innerHeight) / 100; // Make radius dynamic based on container size
+      const centerY = (container.offsetHeight / 2); // Center of the circle (Y-axis)
+      console.log(container.getBoundingClientRect().top);
+      console.log(window.innerHeight);
+      
+      if (container.getBoundingClientRect().top > window.innerHeight) {
+        return
+      }
+      
+      const angle1 = scrollPosition + (2 * Math.PI) / 5;
+      const angle2 = scrollPosition + (4 * Math.PI) / 5;
+      const angle3 = scrollPosition + (6 * Math.PI) / 5;
+
+      
+      
+      // setCircle1Y((centerY + radius * Math.sin(angle1) - circle1.current.offsetHeight / 2) )
+      // setCircle2Y((centerY + radius * Math.sin(angle2)  - circle2.current.offsetHeight / 2))
+      // setCircle3Y((centerY + radius * Math.sin(angle3) - circle3.current.offsetHeight / 2))
+
+    };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
     return (
     <div className="App">
       <header>
@@ -48,19 +59,14 @@ function LandingPage() {
         </div>
         </div>
         <div className='headerDiv'>
-          <button onClick={signInBtn}>
-          Sign In <img src='./landing page/signIn.png' alt='signin'/>
-          </button>
+          <SignInBtn text={'Sign In'} src={'./landing page/signIn.png'}/>
         </div>
       </header>
       <div className='firstDiv' style={{backgroundImage:  `url( '/landing page/background1.png')`}}>
         <h2>WELCOME TO KUMARE</h2>
         <h1>Where borrowing <br/>leads to <span style={{fontWeight:800, color:'#FF992D'}}>Earning</span></h1>
         <p>Discover how microlending can help you achieve your financial goals while <br/>providing you with the opportunity to earn as you borrow.</p>
-        <button onClick={signInBtn}>
-          <img src='./landing page/icplogo.png' alt='icplogo'/>
-          Start Now with ICP
-        </button>
+        <SignInBtn text={'Start Now with ICP'} src={'./landing page/icplogo.png'} leftImg={true}/>
 
       </div>
       <div className='secondDiv'>
@@ -82,9 +88,11 @@ function LandingPage() {
       </div>
       <div className="thirdDiv">
         <div className="image-content">
-            <div className="image-placeholder"></div>
-            <div className="image-placeholder"></div>
-        </div>
+          <div className='thirdDivCircle' style={{backgroundImage:  `url( '/landing page/circleImg.png')`}}></div>
+          <div className='thirdDivCircle'></div>
+          <div className='thirdDivCircle'></div>
+          <div className='thirdDivCircle'></div>
+          </div>
 
         <div className="text-content">
             <h1>Fueling Community Growth and Economic Development</h1>
@@ -112,14 +120,15 @@ function LandingPage() {
           </div>
         </div>
       </div>
-      <div className='fifthDiv'>
+    
+    <div className='fifthDiv' ref={circleDiv}>
         <h1>Building futures, for a <br/>better tomorrow.</h1>
         <h2 className='title'>Social Development Goals</h2>
         <div className='circleDiv'>
           <div className='circle'></div>
-          <img src='./landing page/circle1.png' alt='circle 1'/>
-          <img src='./landing page/circle2.png' alt='circle 2'/>
-          <img src='./landing page/circle3.png' alt='circle 3'/>
+          <img src='./landing page/circle1.png' alt='circle 1' />
+          <img src='./landing page/circle2.png'  alt='circle 2' />
+          <img src='./landing page/circle3.png' alt='circle 3' />
         </div>
         <div className='sdgDiv'>
           <div className='sdg'>
@@ -133,7 +142,7 @@ function LandingPage() {
             <img src='/landing page/sdg2.png' alt='sdg2'/>
             <div className='text'>
             <h3>SDG 11: <br/>Sustainable Cities and Communities</h3>
-              <p>Kumare is dedicated to fostering sustained economic growth through our microlending services. By providing accessible financial solutions with fair interest rates, we create opportunities for decent work and entrepreneurship, empowering individuals to enhance their livelihoods and strengthen their communities’ economic stability.</p>
+              <p>Our mission is to cultivate resilient, sustainable communities by promoting financial inclusion for underrepresented populations. Kumare’s microlending platform supports small-scale enterprises and community-driven initiatives, improving access to resources and contributing to safer, more inclusive urban environments.</p>
             </div>
           </div>
           <div className='sdg'>
