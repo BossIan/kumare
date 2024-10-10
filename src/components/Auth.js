@@ -26,7 +26,7 @@ function Auth(){
         {user !== undefined && user !== null ? (
         <RouterProvider router={router}/>
         ) : (
-          <LandingPage />
+          <Dashboard />
         )}
       </AuthContext.Provider>
     );

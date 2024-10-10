@@ -1,30 +1,29 @@
 import './landingPage.css';
 import SignInBtn from './components/signInBtn'
-import { useEffect, useRef, useState } from 'react';
 function LandingPage() {
-  const circle1 = useRef(null);
-  const circle2 = useRef(null);
-  const circle3 = useRef(null);
+  // const circle1 = useRef(null);
+  // const circle2 = useRef(null);
+  // const circle3 = useRef(null);
 
-  const circleDiv = useRef(null);
-  useEffect(() => {
+  // const circleDiv = useRef(null);
+  // useEffect(() => {
     
-    const onScroll = () => {
-      const container = circleDiv.current;
-      let scrollPosition = window.scrollY * 0.001; // Multiply to control orbit speed
+    // const onScroll = () => {
+    //   const container = circleDiv.current;
+    //   let scrollPosition = window.scrollY * 0.001; // Multiply to control orbit speed
 
-      const radius = container.offsetWidth / 2 - (20 * window.innerHeight) / 100; // Make radius dynamic based on container size
-      const centerY = (container.offsetHeight / 2); // Center of the circle (Y-axis)
-      console.log(container.getBoundingClientRect().top);
-      console.log(window.innerHeight);
+    //   const radius = container.offsetWidth / 2 - (20 * window.innerHeight) / 100; // Make radius dynamic based on container size
+    //   const centerY = (container.offsetHeight / 2); // Center of the circle (Y-axis)
+    //   console.log(container.getBoundingClientRect().top);
+    //   console.log(window.innerHeight);
       
-      if (container.getBoundingClientRect().top > window.innerHeight) {
-        return
-      }
+    //   if (container.getBoundingClientRect().top > window.innerHeight) {
+    //     return
+    //   }
       
-      const angle1 = scrollPosition + (2 * Math.PI) / 5;
-      const angle2 = scrollPosition + (4 * Math.PI) / 5;
-      const angle3 = scrollPosition + (6 * Math.PI) / 5;
+    //   const angle1 = scrollPosition + (2 * Math.PI) / 5;
+    //   const angle2 = scrollPosition + (4 * Math.PI) / 5;
+    //   const angle3 = scrollPosition + (6 * Math.PI) / 5;
 
       
       
@@ -32,17 +31,17 @@ function LandingPage() {
       // setCircle2Y((centerY + radius * Math.sin(angle2)  - circle2.current.offsetHeight / 2))
       // setCircle3Y((centerY + radius * Math.sin(angle3) - circle3.current.offsetHeight / 2))
 
-    };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+    // };
+    //   window.addEventListener('scroll', onScroll, { passive: true });
+    //   return () => window.removeEventListener('scroll', onScroll);
+  // }, []);
 
     return (
     <div className="App">
       <header>
         <div className='header2'>
         <div className='headerDiv logo'>
-        <img src='./landing page/logo.png' alt='logo'/>
+        <img src='./logo.png' alt='logo'/>
         <h3>Kumare</h3>
         </div>
         <div className='headerDiv'>
@@ -121,7 +120,7 @@ function LandingPage() {
         </div>
       </div>
     
-    <div className='fifthDiv' ref={circleDiv}>
+    <div className='fifthDiv'>
         <h1>Building futures, for a <br/>better tomorrow.</h1>
         <h2 className='title'>Social Development Goals</h2>
         <div className='circleDiv'>
@@ -194,10 +193,13 @@ function LandingPage() {
         </div>
       </div>
       <div className='seventhDiv'>
+        <h1>Borrow from Kumare today!</h1>
+        <p>Tap into Kumare’s microlending services to unlock opportunities for personal and business growth. Whether you need funds to get started or you’re looking to invest in a brighter future, Kumare offers the support you need with fair interest rates and secure transactions.</p>
+        <SignInBtn text={'Sign In'} src={'./landing page/signIn.png'}/>
       </div>
       <footer>
         
-        <span className='allRights'><img src='./landing page/logo.png' alt='logo'/>© All rights Reserved 2024  </span>
+        <span className='allRights'><img src='./logo.png' alt='logo'/>© All rights Reserved 2024  </span>
         <span>Terms of Use | Privacy Policy</span>
         <div className='socials'>
         <a href='https://x.com'><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg">

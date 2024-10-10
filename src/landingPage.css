@@ -1,5 +1,4 @@
 body{
-    font-family: 'Manrope';
     overflow-x: hidden;
     overflow-Y: scroll;
 }
@@ -25,10 +24,8 @@ header{
     gap: 3vw;
 }
 .logo {
-    color:  linear-gradient(95.89deg, #EA871E 8.12%, #AC4F00 72.27%);
     display: flex;
     align-items: center;
-    font-family: 'Poppins';
     font-size: 1.7vw;
     font-weight: 600;
 }
@@ -330,7 +327,7 @@ padding-bottom: 6vw;
 }
 
 .circleDiv img:nth-child(2) {
-    right: -10vw;
+    right: -22vw;
     top: -20vw;
     animation: spin linear;
     animation-timeline: view();
@@ -340,9 +337,9 @@ padding-bottom: 6vw;
 }
 
 .circleDiv img:nth-child(3) {
-    right: 10vw;
+    right: 12vw;
     animation: spin2 linear;
-    top: 20vw;
+    top: -5vw;
     animation-timeline: view();
     animation-range-start: cover;
     animation-fill-mode: both;
@@ -351,7 +348,7 @@ padding-bottom: 6vw;
 
 .circleDiv img:nth-child(4) {
     right: 0vw;
-    top: 60vw;
+    top: 50vw;
     animation: spin3 linear;
     animation-timeline: view();
     animation-fill-mode: both;
@@ -360,31 +357,44 @@ padding-bottom: 6vw;
 }
 
 @keyframes spin {
-    to {
-        right: 5vw;
-        top: 5vw;
+    40% {
+        right: -20vw;
+        top: -20vw;
+    }
+    100% {
+        right: 20vw;
+        top: 0vw;
     }
 
   }
 
-  @keyframes spin2 {
-    10%{
-        top: 20vw;
+   @keyframes spin2 {
+    20%{
+        top: 10vw;
         right: 15vw;
     }
     50%{
         top: 30vw;
         right: 20vw;
     }
-    100% {
-        right: 10vw;
+    70% {
+        right: 15vw;
+        top: 40vw;
+    }
+    85% {
+        right: 12vw;
         top: 50vw;
     }
-
-  }
+    100% {
+        right: 12vw;
+        top: 50vw;
+    }
+  } 
   @keyframes spin3 {
-    to {
-        right: -20vw     
+
+    100% {
+        top: 60vw;
+        right: -22vw     
 
     }
   }
@@ -607,4 +617,54 @@ footer span{
     align-items: center;
     justify-content: space-evenly;
     width: 10vw;
+}
+
+.seventhDiv {
+    margin-top: 155px;
+    color: white;
+    line-height: .9;
+    padding-top: 4vw;
+}
+
+.seventhDiv h1 {
+    padding-left: 8vw;
+    font-size: 5vw;
+    font-weight: 700;
+    width: 50vw;
+}
+
+.seventhDiv p {
+    padding-top: 1vw;
+    padding-left: 8vw;
+    font-size: 1.8vw;
+    font-weight: 400;
+    margin-bottom: 4vw;
+    line-height: 1.2;
+    width: 50vw;
+    text-align: justify;
+}
+
+.seventhDiv button {
+    margin-left: 8vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-style: solid;
+    border-width: 1px;
+    border-color: white;
+    color: white;;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0);
+    font-weight: 600;
+    font-size: 1vw;
+    width: 9vw;
+    max-width: 120px;
+    gap: 10px;
+    height: 3vw;
+    max-height: 40px;
+    text-align: left;
+}
+
+.seventhDiv button img {
+    filter: brightness(0) invert(1);
 }

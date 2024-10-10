@@ -13,24 +13,42 @@ function Dashboard() {
     }
     return (
         <div className='dashboard'>
-            <Db/>
             <div className="sideBar">
-                <div className="logo sideBtn">
-                    {/* <img src={logo} alt='logo'/> */}
+                <div className="dashboard-logo sideBtn">
+                    <img src='./logo.png' alt='logo'/>
+                    <p>Kumare</p>
                 </div>
                 <div className="sideBtn">
-                    {/* <img src={logo} alt='logo'/><span>Dashboard</span> */}
+                    <img src='./dashboard/overview.png' alt='overview'/>
+                    <p>Overview</p>
                 </div>
                 <div className="sideBtn">
-                    {/* <img src={logo} alt='logo'/><span>User</span> */}
+                    <img src='./dashboard/wallet.png' alt='overview'/>
+                    <p>My Wallet</p>
                 </div>
                 <div className="sideBtn">
-                    {/* <img src={logo} alt='logo'/><span>Product</span> */}
+                    <img src='./dashboard/schedules.png' alt='overview'/>
+                    <p>Schedules</p>
+                    </div>
+                <div className="sideBtn">
+
                 </div>
                 <div className="sideBtn">
-                    {/* <img src={logo} alt='logo'/><span>Blog</span> */}
-                </div>
+                    <img src='./dashboard/community.png' alt='overview'/>
+                    <p>Community</p>
+                    </div>
+                <div className="sideBtn">
+                    <img src='./dashboard/support.png' alt='overview'/>
+                    <p>Support</p>
+                    </div>
+                <div className="sideBtn">
+                    <img src='./dashboard/settings.png' alt='overview'/>
+                    <p>Settings</p>
+                    </div>
+                <div className="sideBtn">
+
                 <button onClick={signOutBtn}>Sign Out</button>
+                </div>
             </div>
             <div className='main'>
                 
