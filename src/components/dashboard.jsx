@@ -13,6 +13,7 @@ function Dashboard() {
     }
     return (
         <div className='dashboard'>
+            <Db/>
             <div className="sideBar">
                 <div className="dashboard-logo sideBtn">
                     <img src='./logo.png' alt='logo'/>

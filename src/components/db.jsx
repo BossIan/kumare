@@ -1,6 +1,6 @@
 import { setDoc, listDocs } from "@junobuild/core";
 import { useEffect, useState, useContext } from "react";
-import { AuthContext } from "./Auth";
+import { AuthContext } from "../../../../kumare/src/components/Auth";
 import { nanoid } from "nanoid"; 
 function Db() {
   const { user } = useContext(AuthContext);
@@ -19,22 +19,16 @@ function Db() {
       const { items } = await listDocs({
         collection: "notes",
       });
-  
       setItems(items);
       console.log(items);
     } catch (error) {
       console.log(error);
       
     }
-    
-    
 };
   
   useEffect(() => {
-    if ([undefined, null].includes(user)) {
-      setItems([]);
-      return;
-    }
+
 
     (async () => await list())();
   }, [user]);

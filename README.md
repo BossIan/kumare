@@ -1,70 +1,198 @@
-# Getting Started with Create React App
+# Juno: Workshop
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![A screenshot of the example developed during the workshop](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-example.png)
 
-## Available Scripts
+This repository provides code samples and instructions to guide attendees in discovering Juno during a workshop.
 
-In the project directory, you can run:
+## Getting Started
 
-### `npm start`
+Clone the repository and install the dependencies:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+git clone https://github.com/junobuild/workshop
+cd workshop
+npm ci
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Workshop
 
-### `npm test`
+We are developing a note-taking app, and the core functionality is already in place. However, we still need to integrate Juno, which we plan to implement during the workshop.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+By following the steps below and replacing the provided snippet, we will be able to implement the app and learn about building on Web3 simultaneously.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Table of contents
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. [Initialization](#initialization)
+2. [Authentication](#authentication)
+3. [Storing Document](#storing-documents)
+4. [Listing Document](#listing-documents)
+5. [Uploading Files](#uploading-files)
+6. [Deployment](#deployment)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+### Initialization
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Before we can integrate Juno into the app, we’ll need to create a satellite. This process is explained in detail in the [documentation](https://juno.build/docs/add-juno-to-an-app/create-a-satellite).
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+> New developers will also need to sign in to Juno's [console](https://console.juno.build) and may even need to create an Internet Identity.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Once the satellite is created, we can initialize Juno with its ID.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+First, configure the satellite ID in the `juno.config.mjs` file.
 
-## Learn More
+> TODO: find and replace STEP_1_CONFIGURATION
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+import { defineConfig } from "@junobuild/config";
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+/** @type {import('@junobuild/config').JunoConfig} */
+export default defineConfig({
+  satellite: {
+    // TODO: STEP_1_CONFIGURATION
+    id: "replace-satellite-id",
+    source: "dist",
+  },
+});
+```
 
-### Code Splitting
+Then, enable the initialization of the library within the application.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+> TODO: find and replace STEP_2_INITIALIZATION
 
-### Analyzing the Bundle Size
+```javascript
+await initSatellite();
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+### Authentication
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+To securely identify users anonymously, they will need to sign in.
 
-### Advanced Configuration
+> TODO: find and replace STEP_3_AUTH_SIGN_IN
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```javascript
+import { signIn } from "@junobuild/core";
+
+await signIn();
+```
+
+To get to know the user’s state, Juno provides an observable function called `authSubscribe()`. We can use it as many times as required, but I find it convenient to subscribe to it at the top of an app.
+
+> TODO: find and replace STEP_4_AUTH_SUBSCRIBE
+
+```typescript
+import { authSubscribe, type User } from "@junobuild/core";
+
+const sub = authSubscribe((user: User | null) => console.log(user));
+```
+
+Users should obviously also be able to sign out.
+
+> TODO: find and replace STEP_5_AUTH_SIGN_OUT
+
+```javascript
+import { signOut } from "@junobuild/core";
+
+await signOut();
+```
+
+---
+
+### Storing Documents
+
+Storing data on the blockchain with Juno is done through a feature called “Datastore”. Follow the instructions in the documentation to create a collection, which can be named accordingly (“notes”).
+
+Once our collection is created, we can persist data on the blockchain using the `setDoc` function.
+
+> TODO: find and replace STEP_6_SET_DOC
+
+```javascript
+await setDoc({
+  collection: "notes",
+  doc: {
+    key,
+    data: {
+      text: inputText,
+    },
+  },
+});
+```
+
+---
+
+### Listing Documents
+
+To fetch the list of documents saved on the blockchain, we can use the `listDocs` function.
+
+> TODO: find and replace STEP_7_LIST_DOCS
+
+```javascript
+const { items } = await listDocs({
+  collection: "notes",
+});
+```
+
+---
+
+### Uploading Files
+
+As for the documents, to upload assets we will need first to create a collection in the “Storage”. We can be name it “images”.
+
+Once our collection is set, we can upload a file on chain using the `uploadFile` function.
+
+> TODO: find and replace STEP_8_UPLOAD_FILE
+
+```javascript
+const { downloadUrl } = await uploadFile({
+  collection: "images",
+  data: file,
+  filename,
+});
+```
+
+In this particular workshop, we also want to save a reference within the document to its related asset.
+
+> TODO: find and replace STEP_9_ADD_REFERENCE
+
+```javascript
+await setDoc({
+  collection: "notes",
+  doc: {
+    key,
+    data: {
+      text: inputText,
+      ...(url !== undefined && { url }), // <--- We add this reference
+    },
+  },
+});
+```
+
+---
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+After we have developed and built our application, we can launch it.
 
-### `npm run build` fails to minify
+We recommend using [GitHub Actions](https://juno.build/docs/guides/github-actions) to continuously deploy real applications, but for the sake of this workshop, we will do this manually. That means we need to install the Juno CLI.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm i -g @junobuild/cli
+```
+
+Once the installation is complete, we log in to grant access from our terminal to our satellite.
+
+```bash
+juno login
+```
+
+Finally, we deploy our project.
+
+```bash
+juno deploy
+```
+
+Congratulations! Your dApp has been launched on chain 🎉.
