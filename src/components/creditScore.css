@@ -1,0 +1,83 @@
+:root {
+    --move-distanceY: 2vw; /* Default value for arrow movement */
+    --move-distanceX: 47.3vw;
+    --max: 2vw;
+    --maxX: 47.3vw;
+  }
+
+.half-circle {
+    width: 52.5vw; /* Adjust this size as needed */
+    height: 25vw; /* Half the width for a half-circle */
+    background: linear-gradient(270deg, #F68712 0%, #E97604 21.18%, #AC4F00 45.18%, #7E3A06 69.18%, #451E00 92.18%);
+    border-top-left-radius: 25vw; /* Half of the width */
+    border-top-right-radius: 25vw; /* Half of the width */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+/* wrap */
+
+.half-circle::after {
+    content: '';
+    position: absolute;
+    border-top-left-radius: 24vw; /* Half of the width */
+    border-top-right-radius: 24vw; /* Half of the width */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: white;
+    width: 51vw; /* Adjust this size as needed */
+    height: 24vw; /* Half the width for a half-circle */
+}
+.inner-circle {
+    z-index: 1;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+
+    background-color: white;
+    border-top-left-radius: 21vw; /* Half of the width */
+    border-top-right-radius: 21vw; /* Half of the width */
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 43.1vw; /* Adjust this size as needed */
+    height: 21vw; /* Half the width for a half-circle */
+}
+
+.arrow {
+	width: 0;
+	height: 0;
+    position: absolute;
+    z-index: 1;
+	border-left: 1.5vw solid transparent;
+	border-right: 1.5vw solid transparent;
+	border-bottom: 2vw solid #555;
+    rotate: -270deg;
+    top: 22.6vw;
+    left: 2.4vw;
+
+    animation: 
+    moveArrowY 5s forwards cubic-bezier( 0.33, 0.34, 0.31, 0.62 ) ,
+    moveArrowX 5s forwards ease
+    ;
+}
+
+@keyframes moveArrowY {
+
+    25% {
+        top: var(--move-distanceY); /* Move according to the CSS variable */
+        rotate: 0deg;
+    }
+    100% {
+        top: 22.6vw;
+        rotate: 90deg;
+        left: var(--move-distanceX);
+    }
+  }
+@keyframes moveArrowX {
+    50% {
+    }
+    100% {
+        left: var(--move-distanceX);
+    }
+    
+}

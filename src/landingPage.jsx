@@ -1,41 +1,6 @@
 import './landingPage.css';
 import SignInBtn from './components/signInBtn'
 function LandingPage() {
-  // const circle1 = useRef(null);
-  // const circle2 = useRef(null);
-  // const circle3 = useRef(null);
-
-  // const circleDiv = useRef(null);
-  // useEffect(() => {
-    
-    // const onScroll = () => {
-    //   const container = circleDiv.current;
-    //   let scrollPosition = window.scrollY * 0.001; // Multiply to control orbit speed
-
-    //   const radius = container.offsetWidth / 2 - (20 * window.innerHeight) / 100; // Make radius dynamic based on container size
-    //   const centerY = (container.offsetHeight / 2); // Center of the circle (Y-axis)
-    //   console.log(container.getBoundingClientRect().top);
-    //   console.log(window.innerHeight);
-      
-    //   if (container.getBoundingClientRect().top > window.innerHeight) {
-    //     return
-    //   }
-      
-    //   const angle1 = scrollPosition + (2 * Math.PI) / 5;
-    //   const angle2 = scrollPosition + (4 * Math.PI) / 5;
-    //   const angle3 = scrollPosition + (6 * Math.PI) / 5;
-
-      
-      
-      // setCircle1Y((centerY + radius * Math.sin(angle1) - circle1.current.offsetHeight / 2) )
-      // setCircle2Y((centerY + radius * Math.sin(angle2)  - circle2.current.offsetHeight / 2))
-      // setCircle3Y((centerY + radius * Math.sin(angle3) - circle3.current.offsetHeight / 2))
-
-    // };
-    //   window.addEventListener('scroll', onScroll, { passive: true });
-    //   return () => window.removeEventListener('scroll', onScroll);
-  // }, []);
-
     return (
     <div className="App">
       <header>
@@ -61,7 +26,7 @@ function LandingPage() {
           <SignInBtn text={'Sign In'} src={'./landing page/signIn.png'}/>
         </div>
       </header>
-      <div className='firstDiv' style={{backgroundImage:  `url( '/landing page/background1.png')`}}>
+      <div className='firstDiv-app' style={{backgroundImage:  `url( '/landing page/background1.png')`}}>
         <h2>WELCOME TO KUMARE</h2>
         <h1>Where borrowing <br/>leads to <span style={{fontWeight:800, color:'#FF992D'}}>Earning</span></h1>
         <p>Discover how microlending can help you achieve your financial goals while <br/>providing you with the opportunity to earn as you borrow.</p>
@@ -128,6 +93,8 @@ function LandingPage() {
           <img src='./landing page/circle1.png' alt='circle 1' />
           <img src='./landing page/circle2.png'  alt='circle 2' />
           <img src='./landing page/circle3.png' alt='circle 3' />
+          <div className='fifthDivCircle'></div>
+          <div className='fifthDivCircle2'></div>
         </div>
         <div className='sdgDiv'>
           <div className='sdg'>
@@ -195,7 +162,7 @@ function LandingPage() {
       <div className='seventhDiv'>
         <h1>Borrow from Kumare today!</h1>
         <p>Tap into Kumare’s microlending services to unlock opportunities for personal and business growth. Whether you need funds to get started or you’re looking to invest in a brighter future, Kumare offers the support you need with fair interest rates and secure transactions.</p>
-        <SignInBtn text={'Sign In'} src={'./landing page/signIn.png'}/>
+        <SignInBtn text={'Sign Up'} src={'./landing page/signIn2.png'}/>
       </div>
       <footer>
         
