@@ -861,7 +861,7 @@ function Dashboard() {
                     <div className="popup-overlay">
                         <div className="popup-content">
                             <div className="popup-title">
-                                <h2>Lend Money</h2>
+                                <h2>My Lend</h2>
                                 <img src="./dashboard/exitBtn.png" alt=""onClick={()=> {setLendViewVisible(false)}} />
                             </div>
                             <div  className="popup-main">
@@ -973,12 +973,12 @@ function Dashboard() {
                     <div className="popup-overlay">
                         <div className="popup-content">
                             <div className="popup-title">
-                                <h2>Lend Money</h2>
+                                <h2>My Loans</h2>
                                 <img src="./dashboard/exitBtn.png" alt=""onClick={()=> {setLoanViewVisible(false)}} />
                             </div>
                             <div  className="popup-main">
                                 <p>
-                                The My Lend sections shows the details about the current active lends. Here, you’ll find information about your current lend including the due date, name of borrower, and the details about the transaction.
+                                The My Loan section helps you manage and monitor your active loans. Here, you’ll find important information about your current loans, including due dates, outstanding balances, and repayment history.
                                 </p>
                                 <div className="popup-view-details">
                                         <div className="popup-view-detail">
