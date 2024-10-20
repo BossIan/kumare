@@ -738,12 +738,13 @@ footer span{
     margin-bottom: -10vw;
 }
 
-.popup-overlay video{
+.popup-overlay iframe{
     width: 80%;
     z-index: 100;
+    aspect-ratio: 16 / 9; 
 }
 @media (max-aspect-ratio: 16/10) {
-    .popup-overlay video {
+    .popup-overlay iframe {
     width: 100%;
 }
   }

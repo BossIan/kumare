@@ -2,7 +2,7 @@ import { useState } from 'react';
 import './landingPage.css';
 import SignInBtn from './signInBtn'
 function LandingPage() {
-  const [ videoVisible, setVideoVisible] = useState(true)
+  const [ videoVisible, setVideoVisible] = useState(false)
     return (
     <div className="App">
       <header>
@@ -206,7 +206,7 @@ function LandingPage() {
       {videoVisible && (
         <div className="popup-overlay overlay-landing">
           <div className="popup-backdrop"onClick={(e) => {setVideoVisible(false)}}></div>
-          <video controls src="./landing page/KUMARE.mp4"></video>
+          <iframe src="https://drive.google.com/file/d/1a_B_BPYalO3E9q4jGY9U7D2g-9yhV0Ix/preview"></iframe>
         </div>
     )}
     </div>
