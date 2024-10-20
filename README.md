@@ -1,198 +1,120 @@
-# Juno: Workshop
+# Kumare
 
-![A screenshot of the example developed during the workshop](https://raw.githubusercontent.com/junobuild/create-juno/main/screenshots/screenshot-example.png)
+![Kumare](./kumare-website.png)
 
-This repository provides code samples and instructions to guide attendees in discovering Juno during a workshop.
+**Kumare** is a micro-lending app that utilizes blockchain technology to provide secure, transparent, and accessible loans with low-interest rates. By utilizing blockchain, Kumare minimizes transaction fees and streamlines the lending experience, making microloans more affordable and accessible to a wider audience.
 
-## Getting Started
+## Tech Stack
 
-Clone the repository and install the dependencies:
+- **Frontend**: Vite.js (React, Javascript)
+- **Backend Services**: Juno (Blockchain-as-a-Service for ICP)
+- **Authentication**: ICP Authentication (Passkey)
 
-```bash
-git clone https://github.com/junobuild/workshop
-cd workshop
-npm ci
-```
+## Why Juno?
 
-## Workshop
+Juno is revolutionizing decentralized application development by offering a user-friendly and efficient alternative to traditional ICP workflows. Unlike Azle, Juno streamlines the process of building and deploying dApps on ICP by providing a range of plug-and-play services, much like Firebase but designed specifically for blockchain. This simplifies development, lowers the barrier to entry, and speeds up the process, making it a perfect fit for our project.
 
-We are developing a note-taking app, and the core functionality is already in place. However, we still need to integrate Juno, which we plan to implement during the workshop.
+## Project Setup
 
-By following the steps below and replacing the provided snippet, we will be able to implement the app and learn about building on Web3 simultaneously.
+To get started with Kumare, follow these steps:
 
----
+1. **Clone the Repository**
 
-### Table of contents
+   ```bash
+   git clone https://github.com/your-repo/kumare.git
+   cd kumare
+   ```
 
-1. [Initialization](#initialization)
-2. [Authentication](#authentication)
-3. [Storing Document](#storing-documents)
-4. [Listing Document](#listing-documents)
-5. [Uploading Files](#uploading-files)
-6. [Deployment](#deployment)
+2. **Install Dependencies**
 
----
+   ```bash
+   npm install
+   ```
 
-### Initialization
+3. **Build the Project**
 
-Before we can integrate Juno into the app, we’ll need to create a satellite. This process is explained in detail in the [documentation](https://juno.build/docs/add-juno-to-an-app/create-a-satellite).
+   ```bash
+   npm run build
+   ```
 
-> New developers will also need to sign in to Juno's [console](https://console.juno.build) and may even need to create an Internet Identity.
+4. **Login to Juno**
 
-Once the satellite is created, we can initialize Juno with its ID.
+   ```bash
+   juno login
+   ```
 
-First, configure the satellite ID in the `juno.config.mjs` file.
+5. **Deploy to Juno**
 
-> TODO: find and replace STEP_1_CONFIGURATION
+   ```bash
+   juno deploy
+   ```
 
-```javascript
-import { defineConfig } from "@junobuild/config";
+6. **Update Canister ID**
 
-/** @type {import('@junobuild/config').JunoConfig} */
-export default defineConfig({
-  satellite: {
-    // TODO: STEP_1_CONFIGURATION
-    id: "replace-satellite-id",
-    source: "dist",
-  },
-});
-```
+   - Open the `juno.config.mjs` file in your project.
+   - Update the placeholder canister ID with your own canister ID from Juno.
+   - Save the changes to the file.
 
-Then, enable the initialization of the library within the application.
+   **Example:**
 
-> TODO: find and replace STEP_2_INITIALIZATION
+   ```typescript
+   import { defineConfig } from "juno";
 
-```javascript
-await initSatellite();
-```
+   export default defineConfig({
+     satellite: {
+       id: "your-own-canister-id-here",
+       source: "out",
+     },
+   });
+   ```
 
----
+7. **Create Collections in Juno**
 
-### Authentication
+   - Go to the [Juno website](https://juno.build).
+   - Create a collection named `users`.
 
-To securely identify users anonymously, they will need to sign in.
+8. **Read the Juno Documentation**
 
-> TODO: find and replace STEP_3_AUTH_SIGN_IN
+   For more information on how to use Juno, visit the [Juno Documentation](https://internetcomputer.org/docs/current/developer-docs/web-apps/frameworks/juno).
 
-```javascript
-import { signIn } from "@junobuild/core";
+## Canister ID
 
-await signIn();
-```
+- **Canister ID**: ryuyw-nyaaa-aaaal-amngq-cai from `juno.config.mjs`.
+- **Website**: [Kumare on ICP](https://ryuyw-nyaaa-aaaal-amngq-cai.icp0.io/)
 
-To get to know the user’s state, Juno provides an observable function called `authSubscribe()`. We can use it as many times as required, but I find it convenient to subscribe to it at the top of an app.
+## Features
 
-> TODO: find and replace STEP_4_AUTH_SUBSCRIBE
+### Borrower Side
 
-```typescript
-import { authSubscribe, type User } from "@junobuild/core";
+- **Lower Interest Rates**: Access loans with affordable rates ranging from 15-18%.
 
-const sub = authSubscribe((user: User | null) => console.log(user));
-```
+- **Flexible Repayment Terms**: Choose repayment schedules that suit your needs—weekly, bi-weekly, monthly, or quarterly, depending on the loan type.
 
-Users should obviously also be able to sign out.
+**Emergency Loan Products**: Provides immediate financial support during natural disasters or crises.
 
-> TODO: find and replace STEP_5_AUTH_SIGN_OUT
+**Credit Score System**: Encourages responsible financial habits by rewarding timely payments and maintaining low loan utilization.
 
-```javascript
-import { signOut } from "@junobuild/core";
+### Lender Side
 
-await signOut();
-```
+- **Interest Pool Protection**: Lenders are safeguarded by an interest pool, ensuring coverage even if borrowers default temporarily.
 
----
+- **Transparency**: Full visibility of all transactions to build trust and ensure security.
 
-### Storing Documents
+- **Blockchain Security**: Immutable records of lending and borrowing activities, ensuring safety and reliability.
 
-Storing data on the blockchain with Juno is done through a feature called “Datastore”. Follow the instructions in the documentation to create a collection, which can be named accordingly (“notes”).
 
-Once our collection is created, we can persist data on the blockchain using the `setDoc` function.
+## Project Description
 
-> TODO: find and replace STEP_6_SET_DOC
+**Kumare** is an innovative microlending platform that connects borrowers and lenders directly, aiming to enhance access to financial services with decentralized lending solutions and blockchain-based incentives. The app harnesses blockchain integration to offer a secure, transparent, and efficient lending experience. By utilizing smart contracts, Kumare ensures automated loan agreements and repayment tracking, empowering users with fair access to credit while rewarding responsible lending and borrowing practices through crypto-based incentives.
 
-```javascript
-await setDoc({
-  collection: "notes",
-  doc: {
-    key,
-    data: {
-      text: inputText,
-    },
-  },
-});
-```
+## Special Thanks
 
----
+A big thank you to **peterpeterparker**, the creator of Juno, for offering an alternative approach to utilizing ICP in your projects which simplifies the process of building and deploying dApps on ICP by providing a range of plug-and-play services
 
-### Listing Documents
+## License
 
-To fetch the list of documents saved on the blockchain, we can use the `listDocs` function.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
-> TODO: find and replace STEP_7_LIST_DOCS
+## Presentation
 
-```javascript
-const { items } = await listDocs({
-  collection: "notes",
-});
-```
-
----
-
-### Uploading Files
-
-As for the documents, to upload assets we will need first to create a collection in the “Storage”. We can be name it “images”.
-
-Once our collection is set, we can upload a file on chain using the `uploadFile` function.
-
-> TODO: find and replace STEP_8_UPLOAD_FILE
-
-```javascript
-const { downloadUrl } = await uploadFile({
-  collection: "images",
-  data: file,
-  filename,
-});
-```
-
-In this particular workshop, we also want to save a reference within the document to its related asset.
-
-> TODO: find and replace STEP_9_ADD_REFERENCE
-
-```javascript
-await setDoc({
-  collection: "notes",
-  doc: {
-    key,
-    data: {
-      text: inputText,
-      ...(url !== undefined && { url }), // <--- We add this reference
-    },
-  },
-});
-```
-
----
-
-### Deployment
-
-After we have developed and built our application, we can launch it.
-
-We recommend using [GitHub Actions](https://juno.build/docs/guides/github-actions) to continuously deploy real applications, but for the sake of this workshop, we will do this manually. That means we need to install the Juno CLI.
-
-```bash
-npm i -g @junobuild/cli
-```
-
-Once the installation is complete, we log in to grant access from our terminal to our satellite.
-
-```bash
-juno login
-```
-
-Finally, we deploy our project.
-
-```bash
-juno deploy
-```
-
-Congratulations! Your dApp has been launched on chain 🎉.
+Watch the presentation of Kumare: [Watch Video](https://drive.google.com/file/d/1Os4k1JXVrFNdYu59lcHFIarooiPegJwv/view?usp=sharing)
