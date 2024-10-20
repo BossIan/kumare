@@ -11,10 +11,11 @@ function SignInBtn({ className, src, text, leftImg}) {
         });
         if (items == undefined || items.length == 0) {
           navigate("/new-user")
-          return
+          navigate(0);
+        return
         }
         navigate("/dashboard")
-        // navigate(0);
+        navigate(0);
       };
     function signInfun() {
             if (user !== undefined && user !== null) {

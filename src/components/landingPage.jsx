@@ -1,28 +1,34 @@
+import { useState } from 'react';
 import './landingPage.css';
 import SignInBtn from './signInBtn'
 function LandingPage() {
+  const [ videoVisible, setVideoVisible] = useState(true)
     return (
     <div className="App">
       <header>
-        <div className='header2'>
-        <div className='headerDiv logo'>
+      <div className='logo'>
         <img src='./logo.png' alt='logo'/>
         <h3>Kumare</h3>
         </div>
+        <div className='header2'>
         <div className='headerDiv'>
           About
         </div>
         <div className='headerDiv'>
           How it Works
         </div>
-        <div className='headerDiv'>
+        <div className='termsDiv'>
           Terms & Condition
         </div>
         <div className='headerDiv'>
           Privacy Policy
         </div>
+        
         </div>
-        <div className='headerDiv'>
+        <div className='watchDiv'>
+          <button className='watchVideo' onClick={()=>{setVideoVisible(true)}}><img src="./landing page/play.png" alt="" />Watch Video</button>
+        </div>
+        <div className='signinDiv'>
           <SignInBtn text={'Sign In'} src={'./landing page/signIn.png'}/>
         </div>
       </header>
@@ -197,6 +203,12 @@ function LandingPage() {
         </a>
         </div>
       </footer>
+      {videoVisible && (
+        <div className="popup-overlay overlay-landing">
+          <div className="popup-backdrop"onClick={(e) => {setVideoVisible(false)}}></div>
+          <video controls src="./landing page/KUMARE.mp4"></video>
+        </div>
+    )}
     </div>
   );
 }

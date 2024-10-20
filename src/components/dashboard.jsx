@@ -707,6 +707,7 @@ function Dashboard() {
                 </div>
                 {loanVisible && (
                     <div className="popup-overlay">
+                        <div className="popup-backdrop"onClick={(e) => {setLoanVisible(false)}}></div>
                         <div className="popup-content">
                             <div className="popup-title">
                                 <h2>Borrow Money</h2>
@@ -794,6 +795,7 @@ function Dashboard() {
                 )}
                 {lendVisible && (
                     <div className="popup-overlay">
+                        <div className="popup-backdrop"onClick={(e) => {setLendVisible(false)}}></div>
                         <div className="popup-content">
                             <div className="popup-title">
                                 <h2>Lend Money</h2>
@@ -859,6 +861,8 @@ function Dashboard() {
                 )}
                 {lendViewVisible && (
                     <div className="popup-overlay">
+                        <div className="popup-backdrop"onClick={(e) => {setLendViewVisible(false)}}></div>
+
                         <div className="popup-content">
                             <div className="popup-title">
                                 <h2>My Lend</h2>
@@ -970,7 +974,8 @@ function Dashboard() {
                   </div>
                 )}
                 {loanViewVisible && (
-                    <div className="popup-overlay">
+                    <div className="popup-overlay" >
+                        <div className="popup-backdrop"onClick={(e) => {setLoanViewVisible(false)}}></div>
                         <div className="popup-content">
                             <div className="popup-title">
                                 <h2>My Loans</h2>
