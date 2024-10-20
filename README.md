@@ -117,4 +117,4 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## Presentation
 
-Watch the presentation of Kumare: [Watch Video](https://drive.google.com/file/d/1Os4k1JXVrFNdYu59lcHFIarooiPegJwv/view?usp=sharing)
+Watch the presentation of Kumare: [Watch Video](https://drive.google.com/file/d/1a_B_BPYalO3E9q4jGY9U7D2g-9yhV0Ix/view)
