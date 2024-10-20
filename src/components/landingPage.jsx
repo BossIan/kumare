@@ -1,5 +1,5 @@
 import './landingPage.css';
-import SignInBtn from './components/signInBtn'
+import SignInBtn from './signInBtn'
 function LandingPage() {
     return (
     <div className="App">
