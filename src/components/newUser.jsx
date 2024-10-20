@@ -12,6 +12,10 @@ function NewUser() {
     const {items} = await listDocs({
       collection: 'users',
     });
+    if (items == undefined || items.length == 0) {
+        navigate("/")
+      return
+    }
     if (items[0]?.key !== undefined) {
         setKey(items[0].key)
         setVersion(items[0].version)
