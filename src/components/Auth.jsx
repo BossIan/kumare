@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createContext, useState, useEffect } from "react";
 import NewUser from "./newUser";
 import Dashboard from "./dashboard";
-import LandingPage from '../landingPage';
+import LandingPage from './landingPage';
 export const AuthContext = createContext();
 export const Auth = () => {
     const router = createBrowserRouter([{
