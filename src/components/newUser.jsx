@@ -2,20 +2,22 @@ import { setDoc, signOut, listDocs, uploadFile } from "@junobuild/core";
 import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "./Auth";
 import { nanoid } from "nanoid";
+import { useNavigate } from "react-router-dom";
 import './newUser.css'
 function NewUser() {
-  const [items, setItems] = useState([]);
   const [key, setKey] = useState('')
-  const list = async () => {
+  const [version, setVersion] = useState(1)
+    const navigate = useNavigate();
+    const list = async () => {
     const {items} = await listDocs({
       collection: 'users',
     });
-    setItems(items)
-    console.log(items);
     if (items[0]?.key !== undefined) {
         setKey(items[0].key)
+        setVersion(items[0].version)
     } else {
         setKey(nanoid())
+        setVersion(1)
     }
   };
 
@@ -45,6 +47,7 @@ function NewUser() {
         postalCode: '',
         addressSame: '',
         selectId: 'Passport',
+        creditScore: 650,
       });
       
     const [ step, setStep ] = useState(1);
@@ -58,26 +61,25 @@ function NewUser() {
         'Zambales': ['Olongapo', 'Iba', 'Subic', 'Botolan', 'San Marcelino']
       }
     function goBack() {
-        signOut().then(window.location.assign("./"))
+        signOut().then(navigate("/"))
     }
     async function save() {
         try {
-            const filename = `${key}-${file.name}`;
-            await uploadFile({
-            collection: 'images',
-            data: file,
-            filename
-            });
+            // const filename = `${key}-${file.name}`;
+            // await uploadFile({
+            // collection: 'images',
+            // data: file,
+            // filename
+            // });
             await setDoc({
               collection: "users",
               doc: {
                 key,
                 data: formData,
-                version: items[0].version
+                version: version
             }
             });
-            window.location.assign("./dashboard")
-            
+            navigate("/dashboard")
         return
     } catch (error) {
             console.log(error);
@@ -297,11 +299,11 @@ function NewUser() {
     } else if (step == 3) {
         return(
         <div className="newUser">
-            <div className="backButton" onClick={() => step(2)}>
+            <div className="backButton" onClick={() => setStep(2)}>
                 <img src="./new user/back.png" alt="back img" />
                 <p>Back</p>
             </div>
-            <form action={() => setStep(4)}>
+            <form action={save}>
                     <h2>Tell us more about yourself</h2>
                     <div  className="newUser-content3">
                     <div className="column">
@@ -332,7 +334,7 @@ function NewUser() {
                             onChange={handleChange}
                             required
                         >
-                            <option selected disabled  value="">
+                            <option  disabled  value="">
                             City
                             </option>
                             {cityOptions.map((city) => (
@@ -397,16 +399,28 @@ function NewUser() {
                             <option value="nationalId">National ID</option>
                         </select>
 
+                        <div className="submitFile">
+                            <label>Attach Copy of ID</label>
+                            <label htmlFor="file" className="btn-dashboard"><img src="./new user/addFile.png" alt="addfile" /><p>Add File</p></label>
+                            <input
+                                id="file"
+                                type="file"
+                                accept="image/*"
+                                onChange={(event) => {
+                                        setFile(URL.createObjectURL(event.target.files[0]))
+                                }}
+                                style={{display:`none`}}
+                                required
+                        />
+                        </div>
+                        <img className="displayImg" src={file}/>
+                        
                         <div className="checkbox-group">
                             <input type="checkbox" name="confirm" required/> 
                             <label>
                                 I confirm that the answer I selected above is true and understand that answering dishonestly will disqualify me.
                             </label>
                         </div>
-                        <input
-                    type="file"
-                    onChange={(event) => setFile(event.target.files?.[0])}
-                  />
                 </div>
             </div>
             <button type="submit">Save and Continue</button>
@@ -415,6 +429,8 @@ function NewUser() {
         </div>
         )
     }
+
 }
 
 export default NewUser;
+

@@ -1,21 +1,20 @@
 import { listDocs, signIn } from "@junobuild/core";
-import { createContext } from "react";
 import { AuthContext } from './Auth';
+import { useNavigate } from "react-router-dom";
 import { useContext } from 'react';
 function SignInBtn({ className, src, text, leftImg}) {
-    const left = createContext();
+    const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     const list = async () => {
         const {items} = await listDocs({
           collection: 'users',
         });
-        
         if (items == undefined || items.length == 0) {
-            
-          window.location.assign("./new-user")
+          navigate("/new-user")
           return
         }
-        window.location.assign("./dashboard")
+        navigate("/dashboard")
+        // navigate(0);
       };
     function signInfun() {
             if (user !== undefined && user !== null) {
@@ -27,7 +26,7 @@ function SignInBtn({ className, src, text, leftImg}) {
         }
       }
     return(
-        <left.Provider value={{ leftImg }}>
+      <div>
             {leftImg? (
                 <button onClick={signInfun} className={className}>
                 <img src={src} alt='signin'/>{text}
@@ -37,8 +36,7 @@ function SignInBtn({ className, src, text, leftImg}) {
                 {text} <img src={src} alt='signin'/>
                 </button>
             )}
-      
-        </left.Provider>
+      </div>
     )
 }
 

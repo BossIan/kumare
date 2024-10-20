@@ -28,8 +28,8 @@ function LandingPage() {
       </header>
       <div className='firstDiv-app' style={{backgroundImage:  `url( '/landing page/background1.png')`}}>
         <h2>WELCOME TO KUMARE</h2>
-        <h1>Where borrowing <br/>leads to <span style={{fontWeight:800, color:'#FF992D'}}>Earning</span></h1>
-        <p>Discover how microlending can help you achieve your financial goals while <br/>providing you with the opportunity to earn as you borrow.</p>
+        <h1>Where lending and<br/>borrowing leads to <span style={{fontWeight:800, color:'#FF992D'}}>Earning</span></h1>
+        <p>Discover how microlending can help you achieve your financial goals while <br/>providing you with the opportunity to earn as you lend and borrow.</p>
         <SignInBtn text={'Start Now with ICP'} src={'./landing page/icplogo.png'} leftImg={true}/>
 
       </div>
@@ -124,6 +124,7 @@ function LandingPage() {
       <div className='spacer'></div>
       <div className="sixthDiv">
         <div className="image-container">
+          <img src="./landing page/phone.png" alt="phone display" />
         </div>
         <div className="content">
             <h1 className='title'>Why Choose</h1>
@@ -163,6 +164,9 @@ function LandingPage() {
         <h1>Borrow from Kumare today!</h1>
         <p>Tap into Kumare’s microlending services to unlock opportunities for personal and business growth. Whether you need funds to get started or you’re looking to invest in a brighter future, Kumare offers the support you need with fair interest rates and secure transactions.</p>
         <SignInBtn text={'Sign Up'} src={'./landing page/signIn2.png'}/>
+          <video src='./landing page/COINMARE.webm' loop autoPlay muted/>
+
+
       </div>
       <footer>
         

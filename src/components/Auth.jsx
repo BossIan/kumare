@@ -1,18 +1,17 @@
-import { authSubscribe, initSatellite, listDocs } from "@junobuild/core";
+import { authSubscribe, initSatellite } from "@junobuild/core";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { createContext, useState, useEffect } from "react";
 import NewUser from "./newUser";
 import Dashboard from "./dashboard";
-import Db from './db';
 import LandingPage from '../landingPage';
 export const AuthContext = createContext();
 export const Auth = () => {
     const router = createBrowserRouter([{
         path: "/",
-        element: <LandingPage />
+        element: <LandingPage />,
       }, {
         path: "/dashboard",
-        element: <Dashboard />
+        element: <Dashboard />,
       }, {
         path: "/new-user",
         element: <NewUser />
@@ -36,15 +35,11 @@ export const Auth = () => {
     if (!loading) {
       return (
         <AuthContext.Provider value={{ user }}>
-          {user !== undefined && user !== null ? (
           <RouterProvider router={router}/>
-          ) : (
-            <LandingPage />
-          )}
         </AuthContext.Provider>
       );
     } else {
-      return <div>Loading </div>
+      return <div></div>
     }
   };
 
