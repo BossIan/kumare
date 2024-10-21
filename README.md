@@ -28,7 +28,7 @@ To get started with Kumare, follow these steps:
 2. **Install Dependencies**
 
    ```bash
-   npm install
+   npm install --legacy-peer-deps
    ```
 
 3. **Build the Project**
