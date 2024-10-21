@@ -1,7 +1,7 @@
 
 body{
     overflow-x: hidden;
-    overflow-Y: scroll;
+    overflow-Y: var(--overflow);
 }
 button {
     cursor: pointer;

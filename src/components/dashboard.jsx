@@ -19,6 +19,8 @@ function Dashboard() {
         date.getFullYear()
      
     }
+function selectStyle() {
+}
   function displayCanvas() {
     const ctx = chartRef.current?.getContext('2d');
     new Chart(ctx, {
@@ -75,7 +77,7 @@ function Dashboard() {
     }
 
     const navigate = useNavigate();
-    const [balance, setBalance] = useState('0.00')
+    const [balance, setBalance] = useState(0)
     const [lendVisible, setLendVisible] = useState(false)
     const [loanVisible, setLoanVisible] = useState(false)
     const [lendViewVisible, setLendViewVisible] = useState(false)
@@ -94,7 +96,17 @@ function Dashboard() {
     const [credit, setCredit] = useState('')
     const [interestRate, setInterestRate] = useState(0)
     const [viewLendData, setViewLendData] = useState({})
+    const [ isLoanIntervalActive, setLoanIntervalActive] = useState(false)
+    const [ isPaymentTermActive, setPaymentTermActive] = useState(false)
     const [viewLoanData, setViewLoanData] = useState({})
+    // if (balance < 100000 && selectedDiv == 2) {
+    //     console.log(balance);
+        
+    //     setTimeout(() => {
+    //         setBalance((balance+1.12))
+    //     }, 5); 
+    //   }
+
     const [newLoan, setNewLoan] = useState({
         paymentTerm: '',
         loanDuration: '',
@@ -157,6 +169,11 @@ function Dashboard() {
         });
     }
     const handleChange = (e) => {
+        if (name == 'loanInterval') {
+            setLoanIntervalActive(false)
+        } else if (name =='paymentTerm') {
+            setPaymentTermActive(false)
+        }
         var interest;
         var { name, value } = e.target;
         if (dbData.creditScore >= 800 && dbData.creditScore <= 850) {
@@ -290,7 +307,7 @@ function Dashboard() {
                 setDueDate('mm/dd/yyyy')
                 setTotalAmount('0.00')
                 list()
-            });
+    });
         } catch (error) {
             console.log(error);
             
@@ -310,12 +327,9 @@ function Dashboard() {
           return
         }
         value = items[0].data.creditScore
-        setBalance(items[0].data.balance)
         
         setDbData(items[0].data)
-        if (items[0].data.balance == undefined) {
-            setBalance('0.00')
-        }
+
         setLoanData(items[0].data.loanData)
         if (items[0].data.loanData == undefined) {
             setLoanData([])
@@ -461,7 +475,7 @@ function Dashboard() {
                                     </div>
                                     <div className="balance">
                                         <span>Total Balance:</span>
-                                        <h1>{balance}</h1>
+                                        <h1>{balance.toFixed(2)}</h1>
                                         <hr></hr>
                                     </div>
                                     <div className="buttons">
@@ -720,7 +734,12 @@ function Dashboard() {
                         
                                 <div className="form-group">
                                     <label>Payment Terms</label>
+                                    <div className="select">
                                     <select
+                                    onClick={()=>{
+                                        setPaymentTermActive(!isPaymentTermActive)
+                                    }}
+                                    onBlur={()=> {setPaymentTermActive(false)}}
                                     name='paymentTerm'
                                     value={newLoan.paymentTerm}
                                       onChange={handleChange}
@@ -730,11 +749,20 @@ function Dashboard() {
                                         <option value="Short Term">Short Term</option>
                                         <option value="Long Term">Long Term</option>
                                     </select>
+                                    <div className={isPaymentTermActive? "selectNew active" : "selectNew"}>
+                                        <img src="./dashboard/arrow.png" alt="" />
+                                    </div>
+                                    </div>
                                 </div>
                         
                                 <div className="form-group">
                                     <label>Loan Interval</label>
-                                    <select
+                                    <div className="select" >
+                                    <select 
+                                    onClick={()=>{
+                                        setLoanIntervalActive(!isLoanIntervalActive)
+                                    }}
+                                    onBlur={()=> {setLoanIntervalActive(false)}}
                                     name='loanInterval'
                                     value={loanInterval}
                                       onChange={handleChange}
@@ -747,6 +775,10 @@ function Dashboard() {
                                         </option>
                                         ))}
                                     </select>
+                                    <div className={isLoanIntervalActive? "selectNew active" : "selectNew"}>
+                                        <img src="./dashboard/arrow.png" alt="" />
+                                    </div>
+                                    </div>
                                 </div>
                                     <div className="form-group">
                                         <label>Loan Duration</label>
@@ -785,9 +817,9 @@ function Dashboard() {
                                         <span>{totalAmount}</span>
                                     </div>
                                 </div>
-                        
+
                                 <button className="borrow-button" type='submit'>
-                                    Borrow
+                                      Borrow
                                 </button>
                             </form>
                         </div>
@@ -808,7 +840,12 @@ function Dashboard() {
                         
                                 <div className="form-group">
                                     <label>Payment Terms</label>
+                                    <div className="select">
                                     <select
+                                    onClick={()=>{
+                                        setPaymentTermActive(!isPaymentTermActive)
+                                    }}
+                                    onBlur={()=> {setPaymentTermActive(false)}}
                                     name='paymentTerm'
                                     value={newLend.paymentTerm}
                                       onChange={handleChangeLend}
@@ -818,6 +855,10 @@ function Dashboard() {
                                         <option value="Short Term">Short Term</option>
                                         <option value="Long Term">Long Term</option>
                                     </select>
+                                    <div className={isPaymentTermActive? "selectNew active" : "selectNew"}>
+                                        <img src="./dashboard/arrow.png" alt="" />
+                                    </div>
+                                    </div>
                                 </div>
                         
                                 <div className="form-group">

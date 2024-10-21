@@ -826,14 +826,42 @@
 }
 
 .form-group select {
-    width: 60%;
+    width: 100%;
     height: 3vw;
+    appearance: none;
     padding-left: 2%;
-    font-size: 1.1vw;
+    position: absolute;
+    top: 0;
     font-family: 'Manrope';
+    font-size: 1.1vw;
+    left: 0;
 }
-
-
+.active {
+    rotate: 180deg;
+}
+.selectNew {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    font-family: 'Manrope';
+    left: 28vw;
+    padding-left: 2%;
+    padding-right: 2%;
+    box-sizing: border-box;
+    font-size: 1.1vw;
+    height: 3vw;
+    top: 0;
+    transition: rotate 0.2s ease;
+}
+.selectNew img{
+    width: 0.8vw;
+    rotate: 270deg;
+}
+.select {
+    width: 60%;
+    position: relative;
+    top: -1.5vw;
+}
 .amount {
     width: 56.8%;
     height: 3vw;

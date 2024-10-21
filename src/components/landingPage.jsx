@@ -3,8 +3,9 @@ import './landingPage.css';
 import SignInBtn from './signInBtn'
 function LandingPage() {
   const [ videoVisible, setVideoVisible] = useState(false)
+  const [ overflowApp, setOverflow] = useState('unset')
     return (
-    <div className="App">
+    <div className="App" >
       <header>
       <div className='logo'>
         <img src='./logo.png' alt='logo'/>
@@ -26,7 +27,10 @@ function LandingPage() {
         
         </div>
         <div className='watchDiv'>
-          <button className='watchVideo' onClick={()=>{setVideoVisible(true)}}><img src="./landing page/play.png" alt="" />Watch Video</button>
+          <button className='watchVideo' onClick={()=>{setVideoVisible(true); document.documentElement.style.setProperty(
+    '--overflow',
+    'hidden'
+  )}}><img src="./landing page/play.png" alt="" />Watch Video</button>
         </div>
         <div className='signinDiv'>
           <SignInBtn text={'Sign In'} src={'./landing page/signIn.png'}/>
@@ -205,8 +209,11 @@ function LandingPage() {
       </footer>
       {videoVisible && (
         <div className="popup-overlay overlay-landing">
-          <div className="popup-backdrop"onClick={(e) => {setVideoVisible(false)}}></div>
-          <iframe src="https://drive.google.com/file/d/1a_B_BPYalO3E9q4jGY9U7D2g-9yhV0Ix/preview"></iframe>
+          <div className="popup-backdrop"onClick={(e) => {setVideoVisible(false); document.documentElement.style.setProperty(
+    '--overflow',
+    'scroll'
+  )}}></div>
+          <iframe src="https://drive.google.com/file/d/1b4RKdb8expGHWfN1ilvnckJrA8iKWXi5/preview"></iframe>
         </div>
     )}
     </div>
