@@ -15,6 +15,8 @@ function NewUser() {
     if (items !== undefined || items.length !== 0) {
         navigate("/dashboard")
       return
+    } else if (items == undefined){
+        navigate("/")
     }
     if (items[0]?.key !== undefined) {
         setKey(items[0].key)
