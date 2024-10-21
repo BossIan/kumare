@@ -107,6 +107,17 @@ To get started with Kumare, follow these steps:
 
 **Kumare** is an innovative microlending platform that connects borrowers and lenders directly, aiming to enhance access to financial services with decentralized lending solutions and blockchain-based incentives. The app harnesses blockchain integration to offer a secure, transparent, and efficient lending experience. By utilizing smart contracts, Kumare ensures automated loan agreements and repayment tracking, empowering users with fair access to credit while rewarding responsible lending and borrowing practices through crypto-based incentives.
 
+## Team members and their roles.
+
+- **Christian Lorenz Joson**: Team Leader, Frontend and Backend Developer
+
+- **John Marco Aguirre**: Multimedia Artist and Frontend Developer
+
+- **Emil Joseph Luis N. Lindayag**: Frontend Developer
+
+- **Judd Russel Asuncion**: Frontend Developer and Researcher
+
+
 ## Special Thanks
 
 A big thank you to **peterpeterparker**, the creator of Juno, for offering an alternative approach to utilizing ICP in your projects which simplifies the process of building and deploying dApps on ICP by providing a range of plug-and-play services
@@ -117,4 +128,4 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## Presentation
 
-Watch the presentation of Kumare: [Watch Video](https://drive.google.com/file/d/1a_B_BPYalO3E9q4jGY9U7D2g-9yhV0Ix/view)
+Watch the presentation of Kumare: [Watch Video](https://drive.google.com/file/d/1b4RKdb8expGHWfN1ilvnckJrA8iKWXi5/view?usp=drivesdk)
