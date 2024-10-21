@@ -128,4 +128,4 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 
 ## Presentation
 
-Watch the presentation of Kumare: [Watch Video](https://drive.google.com/file/d/1b4RKdb8expGHWfN1ilvnckJrA8iKWXi5/view?usp=drivesdk)
+Watch the presentation of Kumare: [Watch Video](https://drive.google.com/file/d/1c4D3SkZ4XL9bN1TYP55mDizmWvgXHmdl/view?usp=drivesdk)
