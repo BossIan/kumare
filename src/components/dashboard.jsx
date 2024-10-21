@@ -397,7 +397,6 @@ function selectStyle() {
                         <p>Settings</p>
                         </div>
                     <div className='feedback'>
-                        <p>We would greatly appreciate it if you could take a few moments to review our service and share your thoughts.</p>
                         <SignOutBtn/>
                     </div>
                 </div>

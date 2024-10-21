@@ -11,7 +11,7 @@ export function SignOutBtn() {
         )
     }
     return(
-       <button onClick={signOutBtn}>Feedback</button>
+       <button onClick={signOutBtn}>Sign Out</button>
     )
 }
 
