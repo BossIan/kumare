@@ -63,7 +63,7 @@ To get started with Kumare, follow these steps:
    export default defineConfig({
      satellite: {
        id: "your-own-canister-id-here",
-       source: "out",
+       source: "dist",
      },
    });
    ```
