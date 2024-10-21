@@ -10,9 +10,6 @@
 - **Backend Services**: Juno (Blockchain-as-a-Service for ICP)
 - **Authentication**: ICP Authentication (Passkey)
 
-## Why Juno?
-
-Juno is revolutionizing decentralized application development by offering a user-friendly and efficient alternative to traditional ICP workflows. Unlike Azle, Juno streamlines the process of building and deploying dApps on ICP by providing a range of plug-and-play services, much like Firebase but designed specifically for blockchain. This simplifies development, lowers the barrier to entry, and speeds up the process, making it a perfect fit for our project.
 
 ## Project Setup
 
@@ -117,10 +114,6 @@ To get started with Kumare, follow these steps:
 
 - **Judd Russel Asuncion**: Frontend Developer and Researcher
 
-
-## Special Thanks
-
-A big thank you to **peterpeterparker**, the creator of Juno, for offering an alternative approach to utilizing ICP in your projects which simplifies the process of building and deploying dApps on ICP by providing a range of plug-and-play services
 
 ## License
 
