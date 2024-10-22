@@ -76,8 +76,8 @@ To get started with Kumare, follow these steps:
 
 ## Canister ID
 
-- **Canister ID**: ryuyw-nyaaa-aaaal-amngq-cai from `juno.config.mjs`.
-- **Website**: [Kumare on ICP](https://ryuyw-nyaaa-aaaal-amngq-cai.icp0.io/)
+- **Canister ID**: i3g3d-2iaaa-aaaal-amq6a-cai from `juno.config.mjs`.
+- **Website**: [Kumare on ICP](https://i3g3d-2iaaa-aaaal-amq6a-cai.icp0.io/)
 
 ## Features
 
