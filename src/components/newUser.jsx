@@ -12,7 +12,7 @@ function NewUser() {
     const {items} = await listDocs({
       collection: 'users',
     });
-    if (items !== undefined || items.length !== 0) {
+    if (items.length !== 0) {
         navigate("/dashboard")
       return
     } else if (items == undefined){
